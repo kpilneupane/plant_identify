@@ -10,20 +10,20 @@ image_size=600
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432
 MODEL_NAME = 'Plant-identification-convnet'
-# Port to listen on (non-privileged ports are > 1023)
-#with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-#    s.bind((HOST, PORT))
-#    s.listen()
-#    conn, addr = s.accept()
-#    with conn:
-#        print('Connected by', addr)
-#        while True:
-#            data = conn.recv()
+ Port to listen on (non-privileged ports are > 1023)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    conn, addr = s.accept()
+    with conn:
+        print('Connected by', addr)
+        while True:
+            data = conn.recv()
             #convert back the bytearray to image not yet converted
-#            img = cv2.imread(data)
-#            greyimage=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-#            laplacian = cv2.Laplacian(greyimage,cv2.CV_64F)
-#            np.save('test_data.npy', test_data)
+            img = cv2.imread(data)
+            greyimage=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+            laplacian = cv2.Laplacian(greyimage,cv2.CV_64F)
+            np.save('test_data.npy', test_data)
 
 img = cv2.imread("/home/kafle/Pictures/test/Acer_Campestre_15.ab.jpg")
 greyimage=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
