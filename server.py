@@ -107,9 +107,13 @@ train = training_data[:-500]
 test = training_data[-500:]
             #check the data
             #feed the input data to the neural network
-X = np.array([i[0] for i in train]).reshape(-1, image_size, image_size, 1)
+#X = np.array([i[0] for i in train]).reshape(-1, image_size, image_size, 1)
+A = np.array([i[0] for i in train])
+X = np.reshape(A, (1,np.product(A.shape)))[0]
 Y = [i[1] for i in train]
-test_x = np.array([i[0] for i in test]).reshape(-1, image_size, image_size, 1)
+#test_x = np.array([i[0] for i in test]).reshape(-1, image_size, image_size, 1)
+B = np.array([i[0] for i in test])
+test_x = np.reshape(A, (1,np.product(B.shape)))[0]
 test_y = [i[1] for i in test]
 
 model.fit({'input': X}, {'targets': Y}, n_epoch = 5,
