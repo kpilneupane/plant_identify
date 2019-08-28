@@ -37,34 +37,6 @@ def create_training():
 create_training()
 print(len(training_data))
 
-
-#for Static testing
-paths_test=os.path.join(Testdir)
-for image in os.listdir(paths_test):
-    image_array_test=cv2.imread(os.path.join(paths_test,image))
-
-testing_data=[]
-def create_testing():
-        paths_test=os.path.join(Testdir)
-        #classify=CATEGORIES.index(categories)
-        for image in os.listdir(paths_test):
-            image_array=cv2.imread(os.path.join(paths_test,image))
-            greyimage_array=cv2.cvtColor(image_array,cv2.COLOR_BGR2GRAY)
-            laplacian_array = cv2.Laplacian(greyimage_array,cv2.CV_64F)
-            my_array=cv2.resize(laplacian_array,(image_size,image_size),3)
-            testing_data.append(my_array)
-            #training_data.append([np.array(img))
-        shuffle(testing_data)
-        np.save('test_data.npy', testing_data)
-create_testing()
-print(len(testing_data))
-test = np.load("test_data.npy")
-print("[STATUS] feature vector size {}".format(np.array(test).shape))
-X_test = np.array([i[0] for i in test]).reshape(-1, image_size, image_size, 1)
-print(len(X_test))
-Y_test = [i[1] for i in test]
-
-
 train = np.load("train_data.npy")
 print("[STATUS] feature vector size {}".format(np.array(train).shape))
 X_train=np.array([i[0] for i in train]).reshape(-1, image_size, image_size, 1)
